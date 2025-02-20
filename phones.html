@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            padding: 1em;
+            margin: 1em 0;
+            border: 1px solid #ddd;
+        }
+        .product img {
+            max-width: 150px;
+        }
+        .product-details {
+            flex: 1;
+            margin-left: 1em;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+        .product-description {
+            margin-bottom: 1em;
+        }
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .buy-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mobile Phone Store</h1>
+        </div>
+        <div id="product-list">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const products = [
+            {
+                title: "Smartphone A",
+                description: "High-performance smartphone with excellent camera quality.",
+                price: "₹60000",
+                imageUrl: "https://i.ibb.co/zhdykd9y/41x507-Qk7o-L-SX300-SY300-QL70-FMwebp.webp"
+            },
+            {
+                title: "Smartphone B",
+                description: "Affordable smartphone with good battery life.",
+                price: "₹40000",
+                imageUrl:"https://i.ibb.co/S7ncJf84/images-1.jpg"
+            },
+            {
+                title: "Smartphone C",
+                description: "Flagship smartphone with advanced features.",
+                price: "₹80000",
+                imageUrl: "https://i.ibb.co/V0PB42zs/images.jpg"
+            },
+            {
+                title: "Smartphone D",
+                description: "Compact smartphone with sleek design.",
+                price: "₹50000",
+                imageUrl: "https://i.ibb.co/FkXF3gFB/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium.webp"
+            },
+            {
+                title: "Smartphone E",
+                description: "Gaming smartphone with high refresh rate display.",
+                price: "₹70000",
+                imageUrl: "https://i.ibb.co/Y7YqVV2N/vimpy17sram4gb64gbglitterpurple-272843683-sddiih05.jpg"
+            },
+            {
+                title: "Smartphone F",
+                description: "Budget smartphone with decent performance.",
+                price: "₹300000",
+                imageUrl: "https://i.ibb.co/fzJxxZh3/OWZAEk-Dx9exzsd5-H.webp"
+            }
+        ];
+
+        const productList = document.getElementById('product-list');
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+
+            productDiv.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.title}">
+                <div class="product-details">
+                    <div class="product-title">${product.title}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="product-price">${product.price}</div>
+                    <button class="buy-button" onclick="location.href='userdetails.html'">Buy Now</button>
+                </div>
+            `;
+
+            productList.appendChild(productDiv);
+        });
+    </script>
+</body>
+</html>

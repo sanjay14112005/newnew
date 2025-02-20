@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .image-container img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .heart-animation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      color: red;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .like-share {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .like-btn, .share-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .like-btn.liked {
+      color: red;
+    }
+
+    .like-btn, .share-btn {
+      font-size: 18px;
+    }
+
+    .gpay-button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .gpay-button:hover {
+      background-color: #d6478f;
+    }
+
+    .share-options {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .share-options a {
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .reviews {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .review {
+      background: #f1f1f1;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-like {
+      cursor: pointer;
+      color: grey;
+    }
+
+    .review-like.liked {
+      color: red;
+    }
+
+    .add-review input {
+      padding: 10px;
+      width: 80%;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .add-review button {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .add-review button:hover {
+      background-color: #45a049;
+    }
+
+    .notes {
+      margin-top: 20px;
+      text-align: left;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    .amount-section {
+      margin-top: 20px;
+    }
+
+    .amount {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .payment-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .product-details {
+      text-align: left;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .product-details h3 {
+      color: #333;
+    }
+
+    .product-details p {
+      margin: 5px 0;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-top: 30px;
+      text-align: left;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .faq-section h3 {
+      color: #333;
+    }
+
+    .faq-item {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .faq-answer {
+      margin-left: 20px;
+      font-style: italic;
+    }
+
+    /* Buttons */
+    .buy-now-btn, .add-to-cart-btn {
+      padding: 12px 20px;
+      background-color: #333;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn {
+      background-color: #333;
+    }
+
+    .buy-now-btn:hover, .add-to-cart-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Product Details</h2>
+
+    <div class="image-container" ondblclick="doubleTapLike()">
+      <img src="https://i.ibb.co/PGPjD7Wx/airpods-4-select-202409-FV1.jpg" alt="Product Image">
+      <div class="heart-animation">❤</div>
+    </div>
+
+    <div class="like-share">
+      <button class="like-btn" onclick="toggleLike()">♡</button> <span>Like</span>
+      <button class="share-btn" onclick="toggleShare()">📤</button> <span>Share</span>
+    </div>
+
+    <div class="share-options" id="shareOptions">
+      <a href="#" onclick="shareOnWhatsApp()">📱 WhatsApp</a>
+      <a href="#" onclick="shareOnFacebook()">📘 Facebook</a>
+      <a href="#" onclick="shareOnTwitter()">🐦 Twitter</a>
+    </div>
+
+    <div class="notes">
+      <h3>Product Notes</h3>
+      <p>✔ High-quality sound</p>
+      <p>✔ Noise-canceling feature</p>
+      <p>✔ Comfortable ear pads</p>
+    </div>
+
+    <div class="product-details">
+      <h3>Product Details: Headset</h3>
+      <p><strong>Brand:</strong> Bose</p>
+      <p><strong>Material:</strong> Plastic & Metal</p>
+      <p><strong>Color:</strong> Black</p>
+      <p><strong>Connectivity:</strong> Bluetooth</p>
+      <p><strong>Weight:</strong> 0.7 kg</p>
+      <p><strong>Price:</strong> ₹10000</p>
+      <p><strong>Available Stock:</strong> 50 units</p>
+    </div>
+
+    <div class="amount-section">
+      <p class="amount">₹10000</p>
+    </div>
+
+    <div class="payment-section">
+      <button class="gpay-button" onclick="payWithGPay()">Pay with Google Pay</button>
+    </div>
+
+    <div class="buy-now-add-to-cart">
+      <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+     
+    </div>
+
+    <div class="faq-section">
+      <h3>Frequently Asked Questions (FAQ)</h3>
+      <div class="faq-item">
+        <strong>Q1: Is the headset compatible with all devices?</strong>
+        <p class="faq-answer">A1: Yes, it is compatible with all Bluetooth-enabled devices.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Q2: How long is the battery life?</strong>
+        <p class="faq-answer">A2: The headset has a battery life of up to 20 hours on a single charge.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Q3: Can I use the headset for gaming?</strong>
+        <p class="faq-answer">A3: Yes, the headset is perfect for gaming due to its excellent sound quality and comfort.</p>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h3>Product Reviews</h3>
+      <div id="reviewList"></div>
+      <div class="add-review">
+        <input type="text" id="reviewInput" placeholder="Write a review...">
+        <button onclick="addReview()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let liked = localStorage.getItem("liked") === "true";
+
+    function updateLikeUI() {
+      let likeBtn = document.querySelector(".like-btn");
+      likeBtn.innerHTML = liked ? "❤" : "♡";
+      likeBtn.classList.toggle("liked", liked);
+    }
+
+    function toggleLike() {
+      liked = !liked;
+      localStorage.setItem("liked", liked);
+      updateLikeUI();
+    }
+
+    function doubleTapLike() {
+      let heartAnimation = document.querySelector(".heart-animation");
+      heartAnimation.style.opacity = 1;
+      heartAnimation.style.transform = "translate(-50%, -50%) scale(1)";
+      setTimeout(function () {
+        heartAnimation.style.opacity = 0;
+        heartAnimation.style.transform = "translate(-50%, -50%) scale(0)";
+      }, 500);
+    }
+
+    function toggleShare() {
+      document.getElementById("shareOptions").classList.toggle("show");
+    }
+
+    function shareOnWhatsApp() {
+      alert("Shared on WhatsApp");
+    }
+
+    function shareOnFacebook() {
+      alert("Shared on Facebook");
+    }
+
+    function shareOnTwitter() {
+      alert("Shared on Twitter");
+    }
+
+    function addReview() {
+      const reviewInput = document.getElementById("reviewInput");
+      const reviewText = reviewInput.value.trim();
+      if (reviewText !== "") {
+        const reviewList = document.getElementById("reviewList");
+        const review = document.createElement("div");
+        review.classList.add("review");
+        review.innerHTML = `${reviewText} <span class="review-like" onclick="toggleReviewLike(this)">👍</span>`;
+        reviewList.appendChild(review);
+        reviewInput.value = "";
+      }
+    }
+
+    function toggleReviewLike(likeElement) {
+      likeElement.classList.toggle("liked");
+    }
+
+    function payWithGPay() {
+      alert("Redirecting to Google Pay...");
+      window.location.href = 'upi://pay?pa=asarudeen2005a@oksbi&pn=Asarudeen&am=10000&cu=INR';
+    }
+
+    function buyNow() {
+      window.location.href = "userdetails.html";
+    }
+
+    function addToCart() {
+      alert("Added to Cart");
+    }
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+function displayReviews() {
+  let reviewList = document.getElementById("reviewList");
+  reviewList.innerHTML = "";
+  reviews.forEach((review, index) => {
+    let reviewDiv = document.createElement("div");
+    reviewDiv.classList.add("review");
+    reviewDiv.innerHTML = `
+      <span>${review.text}</span>
+      <button class="review-like ${review.liked ? 'liked' : ''}" onclick="likeReview(${index})">❤ ${review.likes}</button>
+    `;
+    reviewList.appendChild(reviewDiv);
+  });
+}
+
+function addReview() {
+  let input = document.getElementById("reviewInput");
+  if (input.value.trim()) {
+    reviews.push({ text: input.value, likes: 0, liked: false });
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    input.value = "";
+    displayReviews();
+  }
+}
+
+function likeReview(index) {
+  reviews[index].likes++;
+  reviews[index].liked = true;
+  localStorage.setItem("reviews", JSON.stringify(reviews));
+  displayReviews();
+}
+
+displayReviews();
+ updateLikeUI();
+
+
+   
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            padding: 1em;
+            margin: 1em 0;
+            border: 1px solid #ddd;
+        }
+        .product img {
+            max-width: 150px;
+        }
+        .product-details {
+            flex: 1;
+            margin-left: 1em;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+        .product-description {
+            margin-bottom: 1em;
+        }
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .buy-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Shoe Store</h1>
+        </div>
+        <div id="product-list">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const products = [
+            {
+                title: "Running Shoes",
+                description: "High-performance running shoes for long-distance running.",
+                price: "₹120",
+                imageUrl: "https://i.ibb.co/QvVMZ9K6/IMG-20250131-WA0003.jpg"
+            },
+            {
+                title: "Casual Sneakers",
+                description: "Comfortable and stylish sneakers for everyday wear.",
+                price: "₹80",
+                imageUrl: "https://i.ibb.co/0pBvDrch/IMG-20250131-WA0006.jpg"
+            },
+            {
+                title: "Basketball Shoes",
+                description: "Durable and supportive shoes for basketball players.",
+                price: "₹150",
+                imageUrl: "https://i.ibb.co/DDkGFK65/IMG-20250131-WA0008.jpg"
+            },
+            {
+                title: "Formal Shoes",
+                description: "Elegant formal shoes for special occasions.",
+                price: "₹100",
+                imageUrl: "https://i.ibb.co/TB5HKqFz/IMG-20250131-WA0005.jpg"
+            },
+            {
+                title: "Hiking Boots",
+                description: "Sturdy and weather-resistant boots for hiking.",
+                price: "₹130",
+                imageUrl: "https://i.ibb.co/GwXJf8h/IMG-20250131-WA0010.jpg"
+            }
+     
+        ];
+
+        const productList = document.getElementById('product-list');
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+
+            productDiv.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.title}">
+                <div class="product-details">
+                    <div class="product-title">${product.title}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="product-price">${product.price}</div>
+                     <button class="buy-button" onclick="location.href='userdetails.html'">Buy Now</button>
+                </div>
+            `;
+
+            productList.appendChild(productDiv);
+        });
+    </script>
+</body>
+</html>

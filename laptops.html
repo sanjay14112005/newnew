@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            padding: 1em;
+            margin: 1em 0;
+            border: 1px solid #ddd;
+        }
+        .product img {
+            max-width: 150px;
+        }
+        .product-details {
+            flex: 1;
+            margin-left: 1em;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+        .product-description {
+            margin-bottom: 1em;
+        }
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .buy-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Laptop Store</h1>
+        </div>
+        <div id="product-list">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const products = [
+            {
+                title: "Gaming Laptop",
+                description: "High-performance laptop for gaming with powerful GPU.",
+                price: "₹124200",
+                imageUrl: "https://i.ibb.co/cXJMD4L0/22a475e555d7-best-laptop-deals.jpg"
+            },
+            {
+                title: "Business Laptop",
+                description: "Professional laptop for business with security features.",
+                price: "₹300000",
+                imageUrl: "https://i.ibb.co/xKzcHMtn/41-P-c68-au-L-SX300-SY300-QL70-FMwebp.webp"
+            },
+            {
+                title: "Ultrabook",
+                description: "Lightweight and portable ultrabook for everyday use.",
+                price: "₹90000",
+                imageUrl: "https://i.ibb.co/kgV2KNq8/mba13-midnight-config-202402.jpg"
+            },
+            {
+                title: "2-in-1 Laptop",
+                description: "Convertible laptop with touch screen and stylus support.",
+                price: "₹110000",
+                imageUrl: "https://i.ibb.co/B273QPhg/mba15-spacegray-config-202306.jpg"
+            },
+            {
+                title: "Student Laptop",
+                description: "Affordable laptop with long battery life for students.",
+                price: "₹70000",
+                imageUrl: "https://i.ibb.co/79BvYP4/mbp16-spaceblack-cto-hero-202410.jpg"
+            },
+            {
+                title: "Designer Laptop",
+                description: "Laptop with high-resolution display for graphic designers.",
+                price: "₹130000",
+                imageUrl: "https://i.ibb.co/ynD3HGzj/notebook-laptop-xps-16-9640-t-silver-gallery-4.jpg"
+            }
+           
+        ];
+
+        const productList = document.getElementById('product-list');
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+
+            productDiv.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.title}">
+                <div class="product-details">
+                    <div class="product-title">${product.title}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="product-price">${product.price}</div>
+                     <button class="buy-button" onclick="location.href='userdetails.html'">Buy Now</button>
+                </div>
+            `;
+
+            productList.appendChild(productDiv);
+        });
+    </script>
+</body>
+</html>
